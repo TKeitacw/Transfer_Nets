@@ -116,4 +116,4 @@ class Transfer_Net(nn.Module):
     def forward_withCAM(self, x):
         x = self.features(x)
         cam = self.return_cam(x)
-        return self.classifier(x.mean([-2,-1])), x
+        return self.classifier(x.mean([-2,-1])), cam
