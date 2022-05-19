@@ -28,7 +28,7 @@ class Transfer_Net(nn.Module):
         if "model" in args.keys():
             f = args["model"]
         else:
-            f = "vgg16"
+            f = None
         dic_resnet = {18:models.resnet18,
                34:models.resnet34,
                50:models.resnet50,
@@ -49,19 +49,21 @@ class Transfer_Net(nn.Module):
             self.features = models.vgg16(pretrained=pretrained).features
             for param in self.features.parameters():
                 param.requires_grad=grad
-            for l in self.features:
-                if isinstance(l, tr):
-                    for param in l.parameters():
-                        param.requires_grad = True
+            if tr is not None:
+                for l in self.features:
+                    if isinstance(l, tr):
+                        for param in l.parameters():
+                            param.requires_grad = True
             self.classifier = torch.nn.Linear(512, out, bias=FC_bias)
         elif f == "alexnet":
             self.features = models.alexnet(pretrained=pretrained).features
             for param in self.features.parameters():
                 param.requires_grad=grad
-            for l in self.features:
-                if isinstance(l, tr):
-                    for param in l.parameters():
-                        param.requires_grad = True
+            if tr is not None:
+                for l in self.features:
+                    if isinstance(l, tr):
+                        for param in l.parameters():
+                            param.requires_grad = True
             self.classifier = torch.nn.Linear(256, out, bias=FC_bias)
         elif f[:3] == "vgg":
             try:
@@ -72,10 +74,11 @@ class Transfer_Net(nn.Module):
                 return 
             for param in self.features.parameters():
                 param.requires_grad=grad
-            for l in self.features:
-                if isinstance(l, tr):
-                    for param in l.parameters():
-                        param.requires_grad = True
+            if tr is not None:
+                for l in self.features:
+                    if isinstance(l, tr):
+                        for param in l.parameters():
+                            param.requires_grad = True
             self.classifier = torch.nn.Linear(512, out, bias=FC_bias)
         elif f[:6] == "resnet":
             try:
