@@ -28,7 +28,7 @@ class Transfer_Net(nn.Module):
         if "model" in args.keys():
             f = args["model"]
         else:
-            f = "vgg"
+            f = "vgg16"
         dic_resnet = {18:models.resnet18,
                34:models.resnet34,
                50:models.resnet50,
