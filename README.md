@@ -1,8 +1,9 @@
 # transfer learning model with pytorch
-
 ## Usage
 You can initialize network as following:
 ```python
+!git clone https://github.com/TKeitacw/Transfer_Nets.git
+from Transfer_Nets.Transfer_Net import Transfer_Net
 model = Transfer_Net()
 ```
 
