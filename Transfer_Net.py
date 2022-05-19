@@ -110,7 +110,6 @@ class Transfer_Net(nn.Module):
         x = self.features(x)
         return self.classifier(x.mean([-2,-1])), x
     def instance_CAMlayer(self):
-        print(self.classifier.weight.shape[1], self.classifier.weight.shape[0])
         self.return_cam = torch.nn.Conv2d(self.classifier.weight.shape[1], self.classifier.weight.shape[0], 1, bias=False)
         self.return_cam.weight = torch.nn.Parameter(self.classifier.weight.unsqueeze(-1).unsqueeze(-1))
         self.return_cam.weight.requires_grad=False
