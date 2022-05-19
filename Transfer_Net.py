@@ -3,7 +3,7 @@ from torch import nn
 from torchvision import models
 
 class Transfer_Net(nn.Module):
-    def __init__(self, args):
+    def __init__(self, args={}):
         super().__init__()
         if "out" in args.keys():
             out = args["out"]
