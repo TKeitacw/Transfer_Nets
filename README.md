@@ -53,7 +53,7 @@ instance_CAMlayer:
 
 &emsp;&emsp;Initialize one 1x1 convolution layer for making CAM.
 
-forward_withFmaps:
+forward_withCAM:
 
 &emsp;&emsp;Forward function to output class probability and class activation map(CAM).
 Warning!!!: please run instance_CAMlayer before running this function.
