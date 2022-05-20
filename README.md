@@ -44,6 +44,10 @@ trainable_layer(tuple):
 model = Transfer_Net({"trainable_layer":(torch.nn.modules.BatchNorm2d)})
 ```
 
+FC_bias(boolean):
+
+&emsp;&emsp;Flag to control bias of last FC layer. Default is False.
+
 ## functions
 forward_withFmaps:
 
